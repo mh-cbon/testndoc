@@ -10,11 +10,11 @@ import (
 	"github.com/mh-cbon/testndoc/recorder"
 )
 
-// ExmapleGorillaMux ...
-func ExmapleGorillaMux() {
+// Create a proxy router to listen the requests / responses.
+var router = recorder.NewMuxRouter(mux.NewRouter(), testndoc.Recorder)
 
-	// Create a proxy router to listen the requests / responses.
-	router := recorder.NewMuxRouter(mux.NewRouter(), testndoc.Recorder)
+// Example ...
+func Example() {
 
 	// Setup regular route handlers.
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
