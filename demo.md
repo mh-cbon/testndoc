@@ -38,7 +38,6 @@
 
 
 - [/tasks/stop](#/tasks/stop)
-  - [github.com/mh-cbon/backup/api.TestStopTaskFailed](#github.com/mh-cbon/backup/api.TestStopTaskFailed)
   - [github.com/mh-cbon/backup/api.TestStopTaskNotStarted](#github.com/mh-cbon/backup/api.TestStopTaskNotStarted)
   - [github.com/mh-cbon/backup/api.TestStopUnknownTask](#github.com/mh-cbon/backup/api.TestStopUnknownTask)
   - [github.com/mh-cbon/backup/api.TestTaskStop](#github.com/mh-cbon/backup/api.TestTaskStop)
@@ -51,6 +50,7 @@ AddTask adds a task to the Config
 
 
 #### github.com/mh-cbon/backup/api.TestConfigAddTask
+TestConfigAddTask add a task to the configuration.
 
 
 __[200] POST__ /config/addTask
@@ -89,6 +89,7 @@ __[200] POST__ /config/addTask
 ___________________
 
 #### github.com/mh-cbon/backup/api.TestConfigAddTaskAlreadyExisting
+TestConfigAddTask fail to add a task already existing.
 
 
 __[200] POST__ /config/addTask
@@ -129,6 +130,7 @@ Read loads the Config
 
 
 #### github.com/mh-cbon/backup/api.TestConfigRead
+TestConfigRead read the configuration.
 
 
 __[200] GET__ /config/read
@@ -162,6 +164,7 @@ RmTask removes a task from the Config
 
 
 #### github.com/mh-cbon/backup/api.TestConfigRmTask
+TestConfigRmTask remove a task from the config.
 
 
 __[200] POST__ /config/rmTask
@@ -195,6 +198,7 @@ __[200] POST__ /config/rmTask
 ___________________
 
 #### github.com/mh-cbon/backup/api.TestConfigRmUnknownTask
+TestConfigRmUnknownTask fail to remove unknown task.
 
 
 __[200] POST__ /config/rmTask
@@ -235,6 +239,7 @@ ListTasks lists configured tasks
 
 
 #### github.com/mh-cbon/backup/api.TestConfigListTasks
+TestConfigListTasks read configured tasks.
 
 
 __[200] GET__ /config/tasks
@@ -269,6 +274,7 @@ ___________________
 
 
 #### github.com/mh-cbon/backup/api.TestDiskInfo
+TestDiskInfo lists available partitions on the computer.
 
 
 __[200] GET__ /disksinfo
@@ -302,6 +308,7 @@ __[200] GET__ /disksinfo
 ___________________
 
 #### github.com/mh-cbon/backup/api.TestDiskInfoFailure
+TestDiskInfoFailure fail to read the computer partition list.
 
 
 __[200] GET__ /disksinfo
@@ -371,6 +378,7 @@ ___________________
 
 
 #### github.com/mh-cbon/backup/api.TestListRunningTasks
+TestListRunningTasks liasts running tasks.
 
 
 __[200] POST__ /tasks/start
@@ -535,40 +543,8 @@ ___________________
 ### /tasks/stop
 
 
-#### github.com/mh-cbon/backup/api.TestStopTaskFailed
-
-
-__[200] POST__ /tasks/stop
-
-##### Request Body
-```
-{
-    "Dest": "Dest",
-    "Name": "Name",
-    "Source": "Source"
-}
-```
-
-
-##### Response Headers
-
-| Key | Value |
-| --- | --- |
-| Content-Type | [text/plain; charset=utf-8] |
-
-
-##### Response Body
-```
-{
-    "Errors": "Task was not removed: Task not stopped \"Name\"",
-    "Res": false
-}
-```
-
-[TOP](#api-doc)
-___________________
-
 #### github.com/mh-cbon/backup/api.TestStopTaskNotStarted
+TestStopTaskNotStarted fails to stop a task not yet started.
 
 
 __[200] POST__ /tasks/stop
@@ -602,6 +578,7 @@ __[200] POST__ /tasks/stop
 ___________________
 
 #### github.com/mh-cbon/backup/api.TestStopUnknownTask
+TestStopUnknownTask fails to stop unknown task.
 
 
 __[200] POST__ /tasks/stop
@@ -635,6 +612,7 @@ __[200] POST__ /tasks/stop
 ___________________
 
 #### github.com/mh-cbon/backup/api.TestTaskStop
+TestTaskStop stop a task.
 
 
 __[200] POST__ /tasks/stop
