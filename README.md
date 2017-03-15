@@ -43,9 +43,9 @@ to export the documentation once the tests finished.
 func TestMain(m *testing.M) {
 	exitCode := m.Run()                            // run the tests
 	err := md.Export(testndoc.Recorder, "path/")   // export the documentation
-  if err != nil {
-    panic(err)
-  }
+	if err != nil {
+		panic(err)
+	}
 	os.Exit(exitCode)
 }
 ```
