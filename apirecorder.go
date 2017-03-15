@@ -3,11 +3,19 @@ package testndoc
 import (
 	"bytes"
 	"encoding/json"
+	"go/ast"
+	"go/parser"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"regexp"
 	"runtime"
+	"strings"
+
+	"golang.org/x/tools/go/loader"
+	"golang.org/x/tools/go/types/typeutil"
 )
 
 // APIRecorder ...
@@ -41,6 +49,112 @@ func (a *APIRecorder) Load(from string) error {
 		return err
 	}
 	return json.Unmarshal(b, a)
+}
+
+// LoadMetadata load api metadata information
+// by digging ans searching your source code,
+// looking for anotations and comments.
+// You shall have recorded(or loaded) requests/responses before this.
+func (a *APIRecorder) LoadMetadata() (APIDoc, error) {
+	ret := APIDoc{}
+	for eppath, records := range *a {
+
+		ep := APIEndPoint{}
+		for i, record := range records {
+
+			Pkg, Type, Func := record.HandlerFn.Split()
+			prog, err := loadPkg(Pkg)
+			if err != nil {
+				return ret, err
+			}
+			hDoc := findTypeDoc(prog, Pkg, Type, Func)
+
+			TestPkg, TestType, TestFunc := record.TestFn.Split()
+			TestProg, err := loadPkg(TestPkg)
+			if err != nil {
+				return ret, err
+			}
+			tDoc := findTypeDoc(TestProg, TestPkg, TestType, TestFunc)
+
+			if i == 0 {
+				ep.Path = record.ParameterizedPath
+				ep.ParameterizedPath = eppath
+				ep.HandlerFn = APIEndPointFn{StackFrame: record.HandlerFn, Doc: hDoc}
+				ep.ReqRes = []APIRequestReponse{}
+			}
+			ep.ReqRes = append(ep.ReqRes, APIRequestReponse{
+				RequestResponse: record,
+				TestEP:          APIEndPointFn{StackFrame: record.TestFn, Doc: tDoc},
+			})
+		}
+		ret.EndPoints = append(ret.EndPoints, ep)
+	}
+	return ret, nil
+}
+
+var loadedProgs = map[string]*loader.Program{}
+
+func loadPkg(path string) (*loader.Program, error) {
+	if x, ok := loadedProgs[path]; ok {
+		return x, nil
+	}
+	var conf loader.Config
+	conf.ParserMode = parser.ParseComments
+	conf.ImportWithTests(path)
+	prog, err := conf.Load()
+	if err != nil {
+		return prog, err
+	}
+	loadedProgs[path] = prog
+	return prog, nil
+}
+
+// todo: return err if not found or similar
+func findTypeDoc(prog *loader.Program, path string, Type string, Func string) string {
+	pkg := prog.Package(path).Pkg
+	if pkg == nil {
+		log.Printf("%v not found", path)
+		return ""
+	}
+
+	// look for a type's method
+	if Type != "" {
+		obj := pkg.Scope().Lookup(Type)
+		if obj == nil {
+			log.Printf("%s.%s not found\n", pkg.Path(), Type)
+			return ""
+		}
+		for _, sel := range typeutil.IntuitiveMethodSet(obj.Type(), nil) {
+			if sel.Obj().Name() == Func {
+				_, paths, _ := prog.PathEnclosingInterval(sel.Obj().Pos(), sel.Obj().Pos())
+				for _, n := range paths {
+					switch n := n.(type) {
+					case *ast.GenDecl:
+						return n.Doc.Text()
+					case *ast.FuncDecl:
+						return n.Doc.Text()
+					}
+				}
+			}
+		}
+	} else {
+		// search a package func
+		obj := pkg.Scope().Lookup(Func)
+		if obj == nil {
+			log.Printf("%s.%s not found\n", pkg.Path(), Func)
+			return ""
+		}
+		_, paths, _ := prog.PathEnclosingInterval(obj.Pos(), obj.Pos())
+		for _, n := range paths {
+			switch n := n.(type) {
+			case *ast.GenDecl:
+				return n.Doc.Text()
+			case *ast.FuncDecl:
+				return n.Doc.Text()
+			}
+		}
+	}
+	return ""
 }
 
 // FuncHandler ...
@@ -145,7 +259,7 @@ func NewResponseRecorder() *ResponseRecorder {
 func (rw *ResponseRecorder) record() {
 	if !rw.recorded {
 		st := makeStackTrace()
-		st1 := SliceFramesUntil(st, "github.com/mh-cbon/backup/api.(*ApiRequestsResponses).FuncHandler")
+		st1 := SliceFramesUntil(st, "github.com/mh-cbon/testndoc.(*APIRecorder).FuncHandler")
 		rw.HandlerFn = st1[len(st1)-1]
 		st2 := SliceFramesUntil(st, "testing.tRunner")
 		rw.TestFn = st2[len(st2)-1]
@@ -178,11 +292,60 @@ type StackFrame struct {
 	Fn   string
 }
 
+// matches public func ~~ (*Config).(the/path/pkg.RmTask)-fm
+var methodR = regexp.MustCompile(`(?i)(\([^)]+\))\.(\([^)]+\))-fm$`)
+
+// matches private func ~~ (*Config).RmTask-fm
+var methodR2 = regexp.MustCompile(`(?i)(\([^)]+\))\.([^-]+)-fm$`)
+
+// matches public func ~~ github.com/mh-cbon/backup/api.TestTaskStart
+var funcPublic = regexp.MustCompile(`(?i)(.+)\.([^.]+)$`)
+
+func (s StackFrame) Split() (string, string, string) {
+	Pkg := ""
+	Type := ""
+	Func := ""
+
+	methodRes := methodR.FindAllStringSubmatch(s.Fn, -1)
+	if len(methodRes) > 0 {
+		d := strings.Index(s.Fn, "(")
+		Pkg = s.Fn[:d-1]
+
+		Type = methodRes[0][1]       // something like (*DisksInfo)
+		Type = Type[1 : len(Type)-1] // removes parenthesis
+		if strings.HasPrefix(Type, "*") {
+			Type = Type[1:]
+		}
+		Func = methodRes[0][2]       // ~ (github.com/mh-cbon/backup/api.read)
+		Func = Func[1 : len(Func)-1] // removes parenthesis
+		e := strings.LastIndex(Func, ".")
+		Func = Func[e+1:]
+	} else {
+		methodRes = methodR2.FindAllStringSubmatch(s.Fn, -1)
+		if len(methodRes) > 0 {
+			d := strings.Index(s.Fn, "(")
+			Pkg = s.Fn[:d-1]
+
+			Type = methodRes[0][1]
+			Type = Type[1 : len(Type)-1] // removes parenthesis
+			if strings.HasPrefix(Type, "*") {
+				Type = Type[1:]
+			}
+			Func = methodRes[0][2]
+		} else {
+			funcRes := funcPublic.FindAllStringSubmatch(s.Fn, -1)
+			Pkg = funcRes[0][1]
+			Func = funcRes[0][2]
+		}
+	}
+	return Pkg, Type, Func
+}
+
 // SliceFramesUntil ...
 func SliceFramesUntil(frames []StackFrame, until string) []StackFrame {
 	ret := []StackFrame{}
 	for _, v := range frames {
-		if len(v.Fn) >= len(until) && v.Fn[0:len(until)] == until {
+		if len(v.Fn) >= len(until) && strings.Index(v.Fn, until) > -1 {
 			break
 		}
 		ret = append(ret, v)
