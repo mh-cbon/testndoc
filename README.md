@@ -11,7 +11,7 @@ WIP.
 Package testndoc generates API documentation by listening to your tests.
 
 
-Check a demo for Markdown [here](/blob/master/demo.md)
+Check a demo for Markdown [here](/demo.md)
 
 Credits goes to [test2doc](https://github.com/adams-sarah/test2doc)
 for initial insipiration.
