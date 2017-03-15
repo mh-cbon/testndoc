@@ -2,6 +2,7 @@ package md
 
 import (
 	"os"
+	"strings"
 	"text/template"
 
 	"github.com/mh-cbon/testndoc"
@@ -9,12 +10,13 @@ import (
 
 // Export the documentation to MD format.
 func Export(recorded testndoc.APIDoc, dest string) error {
+	os.Remove(dest)
 	f, err2 := os.OpenFile(dest, os.O_RDWR|os.O_CREATE, 0755)
 	if err2 != nil {
 		return err2
 	}
 	defer f.Close()
-	t, err := template.New("").Parse(index)
+	t, err := template.New("").Funcs(map[string]interface{}{"lower": strings.ToLower}).Parse(index)
 	if err != nil {
 		return err
 	}
@@ -25,22 +27,22 @@ var index = `
 # API DOC
 
 ## TOC
-{{range .EndPoints}}
-- [{{.ParameterizedPath}}](#{{.ParameterizedPath}}){{range .ReqRes}}
+{{range .SortedEP}}
+- [{{.ParameterizedPath}}](#{{.ParameterizedPath}}){{range .SortedRequests}}
   - [{{.Title}}](#{{.Title}}){{end}}
 
 {{end}}
 
-{{range .EndPoints}}
+{{range .SortedEP}}
 ### {{.ParameterizedPath}}
 {{.Doc}}
-{{range .ReqRes}}
+{{range .SortedRequests}}
 #### {{.Title}}
 {{.Doc}}
 
 __[{{.Response.Code}}] {{.Request.Method}}__ {{.Request.URL}}
 
-{{- if .HasUrlParams}}
+{{- if .HasURLParams}}
 
 ##### Url Parameters
 
@@ -100,7 +102,7 @@ __[{{.Response.Code}}] {{.Request.Method}}__ {{.Request.URL}}
 {{.GetResponseBody}}
 ` + "```" + `
 {{end}}
-[TOP](#API-DOC)
+[TOP](#api-doc)
 ___________________
 {{end}}
 {{end}}`

@@ -3,13 +3,6 @@
 
 ## TOC
 
-- [/tasks/stop](#/tasks/stop)
-  - [github.com/mh-cbon/backup/api.TestTaskStop](#github.com/mh-cbon/backup/api.TestTaskStop)
-  - [github.com/mh-cbon/backup/api.TestStopTaskNotStarted](#github.com/mh-cbon/backup/api.TestStopTaskNotStarted)
-  - [github.com/mh-cbon/backup/api.TestStopUnknownTask](#github.com/mh-cbon/backup/api.TestStopUnknownTask)
-  - [github.com/mh-cbon/backup/api.TestStopTaskFailed](#github.com/mh-cbon/backup/api.TestStopTaskFailed)
-
-
 - [/config/addTask](#/config/addTask)
   - [github.com/mh-cbon/backup/api.TestConfigAddTask](#github.com/mh-cbon/backup/api.TestConfigAddTask)
   - [github.com/mh-cbon/backup/api.TestConfigAddTaskAlreadyExisting](#github.com/mh-cbon/backup/api.TestConfigAddTaskAlreadyExisting)
@@ -19,13 +12,13 @@
   - [github.com/mh-cbon/backup/api.TestConfigRead](#github.com/mh-cbon/backup/api.TestConfigRead)
 
 
-- [/config/tasks](#/config/tasks)
-  - [github.com/mh-cbon/backup/api.TestConfigListTasks](#github.com/mh-cbon/backup/api.TestConfigListTasks)
-
-
 - [/config/rmTask](#/config/rmTask)
   - [github.com/mh-cbon/backup/api.TestConfigRmTask](#github.com/mh-cbon/backup/api.TestConfigRmTask)
   - [github.com/mh-cbon/backup/api.TestConfigRmUnknownTask](#github.com/mh-cbon/backup/api.TestConfigRmUnknownTask)
+
+
+- [/config/tasks](#/config/tasks)
+  - [github.com/mh-cbon/backup/api.TestConfigListTasks](#github.com/mh-cbon/backup/api.TestConfigListTasks)
 
 
 - [/disksinfo](#/disksinfo)
@@ -38,160 +31,19 @@
 
 
 - [/tasks/start](#/tasks/start)
-  - [github.com/mh-cbon/backup/api.TestTaskStart](#github.com/mh-cbon/backup/api.TestTaskStart)
+  - [github.com/mh-cbon/backup/api.TestListRunningTasks](#github.com/mh-cbon/backup/api.TestListRunningTasks)
   - [github.com/mh-cbon/backup/api.TestStartTaskAlreadyStarted](#github.com/mh-cbon/backup/api.TestStartTaskAlreadyStarted)
   - [github.com/mh-cbon/backup/api.TestStartUnknownTask](#github.com/mh-cbon/backup/api.TestStartUnknownTask)
-  - [github.com/mh-cbon/backup/api.TestListRunningTasks](#github.com/mh-cbon/backup/api.TestListRunningTasks)
+  - [github.com/mh-cbon/backup/api.TestTaskStart](#github.com/mh-cbon/backup/api.TestTaskStart)
 
 
+- [/tasks/stop](#/tasks/stop)
+  - [github.com/mh-cbon/backup/api.TestStopTaskFailed](#github.com/mh-cbon/backup/api.TestStopTaskFailed)
+  - [github.com/mh-cbon/backup/api.TestStopTaskNotStarted](#github.com/mh-cbon/backup/api.TestStopTaskNotStarted)
+  - [github.com/mh-cbon/backup/api.TestStopUnknownTask](#github.com/mh-cbon/backup/api.TestStopUnknownTask)
+  - [github.com/mh-cbon/backup/api.TestTaskStop](#github.com/mh-cbon/backup/api.TestTaskStop)
 
 
-### /tasks/stop
-
-
-#### github.com/mh-cbon/backup/api.TestTaskStop
-
-
-__[200] POST__ /tasks/stop
-
-##### Request Body
-```
-{
-    "Dest": "Dest",
-    "Name": "Name",
-    "Source": "Source"
-}
-```
-
-
-##### Response Headers
-
-| Key | Value |
-| --- | --- |
-| Content-Type | [text/plain; charset=utf-8] |
-
-
-##### Response Body
-```
-{
-    "Data": {
-        "Dest": "Dest",
-        "ETA": "",
-        "EndDate": "",
-        "Failure": null,
-        "Messages": null,
-        "Name": "Name",
-        "Percent": "",
-        "Source": "Source",
-        "StartDate": "",
-        "Started": false
-    },
-    "Errors": null,
-    "Res": true
-}
-```
-
-[TOP](#API-DOC)
-___________________
-
-#### github.com/mh-cbon/backup/api.TestStopTaskNotStarted
-
-
-__[200] POST__ /tasks/stop
-
-##### Request Body
-```
-{
-    "Dest": "Dest",
-    "Name": "Name",
-    "Source": "Source"
-}
-```
-
-
-##### Response Headers
-
-| Key | Value |
-| --- | --- |
-| Content-Type | [text/plain; charset=utf-8] |
-
-
-##### Response Body
-```
-{
-    "Errors": "Task was not found: Task not stopped \"Name\"",
-    "Res": false
-}
-```
-
-[TOP](#API-DOC)
-___________________
-
-#### github.com/mh-cbon/backup/api.TestStopUnknownTask
-
-
-__[200] POST__ /tasks/stop
-
-##### Request Body
-```
-{
-    "Dest": "Dest",
-    "Name": "Name",
-    "Source": "Source"
-}
-```
-
-
-##### Response Headers
-
-| Key | Value |
-| --- | --- |
-| Content-Type | [text/plain; charset=utf-8] |
-
-
-##### Response Body
-```
-{
-    "Errors": "Task was not found: Task not stopped \"Name\"",
-    "Res": false
-}
-```
-
-[TOP](#API-DOC)
-___________________
-
-#### github.com/mh-cbon/backup/api.TestStopTaskFailed
-
-
-__[200] POST__ /tasks/stop
-
-##### Request Body
-```
-{
-    "Dest": "Dest",
-    "Name": "Name",
-    "Source": "Source"
-}
-```
-
-
-##### Response Headers
-
-| Key | Value |
-| --- | --- |
-| Content-Type | [text/plain; charset=utf-8] |
-
-
-##### Response Body
-```
-{
-    "Errors": "Task was not removed: Task not stopped \"Name\"",
-    "Res": false
-}
-```
-
-[TOP](#API-DOC)
-___________________
 
 
 ### /config/addTask
@@ -233,7 +85,7 @@ __[200] POST__ /config/addTask
 }
 ```
 
-[TOP](#API-DOC)
+[TOP](#api-doc)
 ___________________
 
 #### github.com/mh-cbon/backup/api.TestConfigAddTaskAlreadyExisting
@@ -268,7 +120,7 @@ __[200] POST__ /config/addTask
 }
 ```
 
-[TOP](#API-DOC)
+[TOP](#api-doc)
 ___________________
 
 
@@ -301,42 +153,7 @@ __[200] GET__ /config/read
 }
 ```
 
-[TOP](#API-DOC)
-___________________
-
-
-### /config/tasks
-ListTasks lists configured tasks
-
-
-#### github.com/mh-cbon/backup/api.TestConfigListTasks
-
-
-__[200] GET__ /config/tasks
-
-##### Response Headers
-
-| Key | Value |
-| --- | --- |
-| Content-Type | [text/plain; charset=utf-8] |
-
-
-##### Response Body
-```
-{
-    "Data": [
-        {
-            "Dest": "Dest",
-            "Name": "Name",
-            "Source": "Source"
-        }
-    ],
-    "Errors": null,
-    "Res": true
-}
-```
-
-[TOP](#API-DOC)
+[TOP](#api-doc)
 ___________________
 
 
@@ -374,7 +191,7 @@ __[200] POST__ /config/rmTask
 }
 ```
 
-[TOP](#API-DOC)
+[TOP](#api-doc)
 ___________________
 
 #### github.com/mh-cbon/backup/api.TestConfigRmUnknownTask
@@ -409,7 +226,42 @@ __[200] POST__ /config/rmTask
 }
 ```
 
-[TOP](#API-DOC)
+[TOP](#api-doc)
+___________________
+
+
+### /config/tasks
+ListTasks lists configured tasks
+
+
+#### github.com/mh-cbon/backup/api.TestConfigListTasks
+
+
+__[200] GET__ /config/tasks
+
+##### Response Headers
+
+| Key | Value |
+| --- | --- |
+| Content-Type | [text/plain; charset=utf-8] |
+
+
+##### Response Body
+```
+{
+    "Data": [
+        {
+            "Dest": "Dest",
+            "Name": "Name",
+            "Source": "Source"
+        }
+    ],
+    "Errors": null,
+    "Res": true
+}
+```
+
+[TOP](#api-doc)
 ___________________
 
 
@@ -446,7 +298,7 @@ __[200] GET__ /disksinfo
 }
 ```
 
-[TOP](#API-DOC)
+[TOP](#api-doc)
 ___________________
 
 #### github.com/mh-cbon/backup/api.TestDiskInfoFailure
@@ -469,7 +321,7 @@ __[200] GET__ /disksinfo
 }
 ```
 
-[TOP](#API-DOC)
+[TOP](#api-doc)
 ___________________
 
 
@@ -511,12 +363,127 @@ __[200] GET__ /tasks/list
 }
 ```
 
-[TOP](#API-DOC)
+[TOP](#api-doc)
 ___________________
 
 
 ### /tasks/start
 
+
+#### github.com/mh-cbon/backup/api.TestListRunningTasks
+
+
+__[200] POST__ /tasks/start
+
+##### Request Body
+```
+{
+    "Dest": "Dest",
+    "Name": "Name",
+    "Source": "Source"
+}
+```
+
+
+##### Response Headers
+
+| Key | Value |
+| --- | --- |
+| Content-Type | [text/plain; charset=utf-8] |
+
+
+##### Response Body
+```
+{
+    "Data": {
+        "Dest": "Dest",
+        "ETA": "",
+        "EndDate": "",
+        "Failure": null,
+        "Messages": null,
+        "Name": "Name",
+        "Percent": "",
+        "Source": "Source",
+        "StartDate": "",
+        "Started": true
+    },
+    "Errors": null,
+    "Res": true
+}
+```
+
+[TOP](#api-doc)
+___________________
+
+#### github.com/mh-cbon/backup/api.TestStartTaskAlreadyStarted
+TestStartTaskAlreadyStarted fails to start the same task twice.
+
+
+__[200] POST__ /tasks/start
+
+##### Request Body
+```
+{
+    "Dest": "Dest",
+    "Name": "Name",
+    "Source": "Source"
+}
+```
+
+
+##### Response Headers
+
+| Key | Value |
+| --- | --- |
+| Content-Type | [text/plain; charset=utf-8] |
+
+
+##### Response Body
+```
+{
+    "Errors": "Task was not started: Task not started \"Name\"",
+    "Res": false
+}
+```
+
+[TOP](#api-doc)
+___________________
+
+#### github.com/mh-cbon/backup/api.TestStartUnknownTask
+TestStartUnknownTask fails to start an unknown task.
+
+
+__[200] POST__ /tasks/start
+
+##### Request Body
+```
+{
+    "Dest": "",
+    "Name": "nop nop",
+    "Source": ""
+}
+```
+
+
+##### Response Headers
+
+| Key | Value |
+| --- | --- |
+| Content-Type | [text/plain; charset=utf-8] |
+
+
+##### Response Body
+```
+{
+    "Errors": {
+        "Name": "Task not found"
+    },
+    "Res": false
+}
+```
+
+[TOP](#api-doc)
+___________________
 
 #### github.com/mh-cbon/backup/api.TestTaskStart
 TestTaskStart starts a task.
@@ -561,14 +528,17 @@ __[200] POST__ /tasks/start
 }
 ```
 
-[TOP](#API-DOC)
+[TOP](#api-doc)
 ___________________
 
-#### github.com/mh-cbon/backup/api.TestStartTaskAlreadyStarted
-TestStartTaskAlreadyStarted fails to start the same task twice.
+
+### /tasks/stop
 
 
-__[200] POST__ /tasks/start
+#### github.com/mh-cbon/backup/api.TestStopTaskFailed
+
+
+__[200] POST__ /tasks/stop
 
 ##### Request Body
 ```
@@ -590,26 +560,25 @@ __[200] POST__ /tasks/start
 ##### Response Body
 ```
 {
-    "Errors": "Task was not started: Task not started \"Name\"",
+    "Errors": "Task was not removed: Task not stopped \"Name\"",
     "Res": false
 }
 ```
 
-[TOP](#API-DOC)
+[TOP](#api-doc)
 ___________________
 
-#### github.com/mh-cbon/backup/api.TestStartUnknownTask
-TestStartUnknownTask fails to start an unknown task.
+#### github.com/mh-cbon/backup/api.TestStopTaskNotStarted
 
 
-__[200] POST__ /tasks/start
+__[200] POST__ /tasks/stop
 
 ##### Request Body
 ```
 {
-    "Dest": "",
-    "Name": "nop nop",
-    "Source": ""
+    "Dest": "Dest",
+    "Name": "Name",
+    "Source": "Source"
 }
 ```
 
@@ -624,20 +593,51 @@ __[200] POST__ /tasks/start
 ##### Response Body
 ```
 {
-    "Errors": {
-        "Name": "Task not found"
-    },
+    "Errors": "Task was not found: Task not stopped \"Name\"",
     "Res": false
 }
 ```
 
-[TOP](#API-DOC)
+[TOP](#api-doc)
 ___________________
 
-#### github.com/mh-cbon/backup/api.TestListRunningTasks
+#### github.com/mh-cbon/backup/api.TestStopUnknownTask
 
 
-__[200] POST__ /tasks/start
+__[200] POST__ /tasks/stop
+
+##### Request Body
+```
+{
+    "Dest": "Dest",
+    "Name": "Name",
+    "Source": "Source"
+}
+```
+
+
+##### Response Headers
+
+| Key | Value |
+| --- | --- |
+| Content-Type | [text/plain; charset=utf-8] |
+
+
+##### Response Body
+```
+{
+    "Errors": "Task was not found: Task not stopped \"Name\"",
+    "Res": false
+}
+```
+
+[TOP](#api-doc)
+___________________
+
+#### github.com/mh-cbon/backup/api.TestTaskStop
+
+
+__[200] POST__ /tasks/stop
 
 ##### Request Body
 ```
@@ -669,23 +669,12 @@ __[200] POST__ /tasks/start
         "Percent": "",
         "Source": "Source",
         "StartDate": "",
-        "Started": true
+        "Started": false
     },
     "Errors": null,
     "Res": true
 }
 ```
 
-[TOP](#API-DOC)
-___________________
-
-ce"
-        }
-    ],
-    "Errors": null,
-    "Res": true
-}
-```
-
-[TOP](#API DOC)
+[TOP](#api-doc)
 ___________________
