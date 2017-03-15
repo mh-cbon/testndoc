@@ -32,17 +32,17 @@ var index = `
 {{end}}
 
 {{range .EndPoints}}
-## {{.ParameterizedPath}}
+### {{.ParameterizedPath}}
 {{.Doc}}
 {{range .ReqRes}}
-##### {{.Title}}
+#### {{.Title}}
 {{.Doc}}
 
 __[{{.Response.Code}}] {{.Request.Method}}__ {{.Request.URL}}
 
 {{- if .HasUrlParams}}
 
-####### Url Parameters
+##### Url Parameters
 
 | Key | Value |
 | --- | --- |
@@ -51,7 +51,7 @@ __[{{.Response.Code}}] {{.Request.Method}}__ {{.Request.URL}}
 
 {{- if .HasGetParams}}
 
-####### GET Parameters
+##### GET Parameters
 
 | Key | Value |
 | --- | --- |
@@ -60,7 +60,7 @@ __[{{.Response.Code}}] {{.Request.Method}}__ {{.Request.URL}}
 
 {{- if .HasPostParams}}
 
-####### POST Parameters
+##### POST Parameters
 
 | Key | Value |
 | --- | --- |
@@ -69,7 +69,7 @@ __[{{.Response.Code}}] {{.Request.Method}}__ {{.Request.URL}}
 
 {{- if .HasRequestHeaders}}
 
-####### Request Headers
+##### Request Headers
 
 | Key | Value |
 | --- | --- |
@@ -78,7 +78,7 @@ __[{{.Response.Code}}] {{.Request.Method}}__ {{.Request.URL}}
 
 {{- if .HasRequestBody}}
 
-####### Request Body
+##### Request Body
 ` + "```" + `
 {{.GetRequestBody}}
 ` + "```" + `
@@ -86,7 +86,7 @@ __[{{.Response.Code}}] {{.Request.Method}}__ {{.Request.URL}}
 
 {{- if .HasResponseHeaders}}
 
-####### Response Headers
+##### Response Headers
 
 | Key | Value |
 | --- | --- |
@@ -95,12 +95,12 @@ __[{{.Response.Code}}] {{.Request.Method}}__ {{.Request.URL}}
 
 {{- if .HasResponseBody}}
 
-####### Response Body
+##### Response Body
 ` + "```" + `
 {{.GetResponseBody}}
 ` + "```" + `
 {{end}}
-[TOP](#API DOC)
+[TOP](#API-DOC)
 ___________________
 {{end}}
 {{end}}`
