@@ -8,6 +8,9 @@ WIP.
 
 Check a demo for Markdown [here][demo.md]
 
+Credits goes to [test2doc](https://github.com/adams-sarah/test2doc)
+for initial insipiration.
+
 # TODOS
 
 - add documentation generators

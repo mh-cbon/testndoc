@@ -11,6 +11,11 @@ WIP.
 Package testndoc generates API documentation by listening to your tests.
 
 
+Check a demo for Markdown [here][demo.md]
+
+Credits goes to [test2doc](https://github.com/adams-sarah/test2doc)
+for initial insipiration.
+
 # TODOS
 
 - add documentation generators
@@ -41,12 +46,12 @@ to export the documentation once the tests finished.
 
 ```go
 func TestMain(m *testing.M) {
-	exitCode := m.Run()                            // run the tests
-	err := md.Export(testndoc.Recorder, "path/")   // export the documentation
-	if err != nil {
-		panic(err)
-	}
-	os.Exit(exitCode)
+  exitCode := m.Run()                            // run the tests
+  err := md.Export(testndoc.Recorder, "path/")   // export the documentation
+  if err != nil {
+    panic(err)
+  }
+  os.Exit(exitCode)
 }
 ```
 
@@ -106,11 +111,11 @@ import (
 	"github.com/mh-cbon/testndoc/recorder"
 )
 
-// ExmapleGorillaMux ...
-func ExmapleGorillaMux() {
+// Create a proxy router to listen the requests / responses.
+var router = recorder.NewMuxRouter(mux.NewRouter(), testndoc.Recorder)
 
-	// Create a proxy router to listen the requests / responses.
-	router := recorder.NewMuxRouter(mux.NewRouter(), testndoc.Recorder)
+// Example ...
+func Example() {
 
 	// Setup regular route handlers.
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
