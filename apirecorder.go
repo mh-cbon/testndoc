@@ -181,6 +181,7 @@ func (a *APIRecorder) FuncHandler(
 		rr := RequestResponse{
 			Request: Request{
 				URL:        req.URL.String(),
+				Method:     req.Method,
 				Body:       string(buf),
 				URLParams:  map[string]string{},
 				GetParams:  map[string][]string{},
@@ -228,6 +229,7 @@ type RequestResponse struct {
 // Request ...
 type Request struct {
 	URL        string
+	Method     string
 	URLParams  map[string]string
 	Headers    map[string][]string
 	GetParams  map[string][]string

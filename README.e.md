@@ -6,6 +6,8 @@ WIP.
 
 {{pkgdoc}}
 
+Check a demo for Markdown [here][demo.md]
+
 # TODOS
 
 - add documentation generators
