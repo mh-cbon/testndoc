@@ -16,11 +16,23 @@ func Export(recorded testndoc.APIDoc, dest string) error {
 		return err2
 	}
 	defer f.Close()
-	t, err := template.New("").Funcs(map[string]interface{}{"lower": strings.ToLower}).Parse(index)
+	funcs := map[string]interface{}{
+		"lower":  strings.ToLower,
+		"mdlink": mdlink,
+	}
+	t, err := template.New("").Funcs(funcs).Parse(index)
 	if err != nil {
 		return err
 	}
 	return t.Execute(f, recorded)
+}
+
+func mdlink(s string) string {
+	s = strings.ToLower(s)
+	s = strings.Replace(s, " ", "-", -1)
+	s = strings.Replace(s, "/", "", -1)
+	s = strings.Replace(s, ".", "", -1)
+	return s
 }
 
 var index = `
@@ -28,8 +40,8 @@ var index = `
 
 ## TOC
 {{range .SortedEP}}
-- [{{.ParameterizedPath}}](#{{.ParameterizedPath}}){{range .SortedRequests}}
-  - [{{.Title}}](#{{.Title}}){{end}}
+- [{{.ParameterizedPath}}](#{{.ParameterizedPath|mdlink}}){{range .SortedRequests}}
+  - [{{.Title}}](#{{.Title|mdlink}}){{end}}
 
 {{end}}
 
@@ -102,7 +114,7 @@ __[{{.Response.Code}}] {{.Request.Method}}__ {{.Request.URL}}
 {{.GetResponseBody}}
 ` + "```" + `
 {{end}}
-[TOP](#api-doc)
+[TOP](#{{"API DOC"|mdlink}})
 ___________________
 {{end}}
 {{end}}`

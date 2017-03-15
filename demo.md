@@ -3,44 +3,44 @@
 
 ## TOC
 
-- [/config/addTask](#/config/addTask)
-  - [github.com/mh-cbon/backup/api.TestConfigAddTask](#github.com/mh-cbon/backup/api.TestConfigAddTask)
-  - [github.com/mh-cbon/backup/api.TestConfigAddTaskAlreadyExisting](#github.com/mh-cbon/backup/api.TestConfigAddTaskAlreadyExisting)
+- [/config/addTask](#configaddtask)
+  - [github.com/mh-cbon/backup/api.TestConfigAddTask](#githubcommh-cbonbackupapitestconfigaddtask)
+  - [github.com/mh-cbon/backup/api.TestConfigAddTaskAlreadyExisting](#githubcommh-cbonbackupapitestconfigaddtaskalreadyexisting)
 
 
-- [/config/read](#/config/read)
-  - [github.com/mh-cbon/backup/api.TestConfigRead](#github.com/mh-cbon/backup/api.TestConfigRead)
+- [/config/read](#configread)
+  - [github.com/mh-cbon/backup/api.TestConfigRead](#githubcommh-cbonbackupapitestconfigread)
 
 
-- [/config/rmTask](#/config/rmTask)
-  - [github.com/mh-cbon/backup/api.TestConfigRmTask](#github.com/mh-cbon/backup/api.TestConfigRmTask)
-  - [github.com/mh-cbon/backup/api.TestConfigRmUnknownTask](#github.com/mh-cbon/backup/api.TestConfigRmUnknownTask)
+- [/config/rmTask](#configrmtask)
+  - [github.com/mh-cbon/backup/api.TestConfigRmTask](#githubcommh-cbonbackupapitestconfigrmtask)
+  - [github.com/mh-cbon/backup/api.TestConfigRmUnknownTask](#githubcommh-cbonbackupapitestconfigrmunknowntask)
 
 
-- [/config/tasks](#/config/tasks)
-  - [github.com/mh-cbon/backup/api.TestConfigListTasks](#github.com/mh-cbon/backup/api.TestConfigListTasks)
+- [/config/tasks](#configtasks)
+  - [github.com/mh-cbon/backup/api.TestConfigListTasks](#githubcommh-cbonbackupapitestconfiglisttasks)
 
 
-- [/disksinfo](#/disksinfo)
-  - [github.com/mh-cbon/backup/api.TestDiskInfo](#github.com/mh-cbon/backup/api.TestDiskInfo)
-  - [github.com/mh-cbon/backup/api.TestDiskInfoFailure](#github.com/mh-cbon/backup/api.TestDiskInfoFailure)
+- [/disksinfo](#disksinfo)
+  - [github.com/mh-cbon/backup/api.TestDiskInfo](#githubcommh-cbonbackupapitestdiskinfo)
+  - [github.com/mh-cbon/backup/api.TestDiskInfoFailure](#githubcommh-cbonbackupapitestdiskinfofailure)
 
 
-- [/tasks/list](#/tasks/list)
-  - [github.com/mh-cbon/backup/api.TestTaskList](#github.com/mh-cbon/backup/api.TestTaskList)
+- [/tasks/list](#taskslist)
+  - [github.com/mh-cbon/backup/api.TestTaskList](#githubcommh-cbonbackupapitesttasklist)
 
 
-- [/tasks/start](#/tasks/start)
-  - [github.com/mh-cbon/backup/api.TestListRunningTasks](#github.com/mh-cbon/backup/api.TestListRunningTasks)
-  - [github.com/mh-cbon/backup/api.TestStartTaskAlreadyStarted](#github.com/mh-cbon/backup/api.TestStartTaskAlreadyStarted)
-  - [github.com/mh-cbon/backup/api.TestStartUnknownTask](#github.com/mh-cbon/backup/api.TestStartUnknownTask)
-  - [github.com/mh-cbon/backup/api.TestTaskStart](#github.com/mh-cbon/backup/api.TestTaskStart)
+- [/tasks/start](#tasksstart)
+  - [github.com/mh-cbon/backup/api.TestListRunningTasks](#githubcommh-cbonbackupapitestlistrunningtasks)
+  - [github.com/mh-cbon/backup/api.TestStartTaskAlreadyStarted](#githubcommh-cbonbackupapiteststarttaskalreadystarted)
+  - [github.com/mh-cbon/backup/api.TestStartUnknownTask](#githubcommh-cbonbackupapiteststartunknowntask)
+  - [github.com/mh-cbon/backup/api.TestTaskStart](#githubcommh-cbonbackupapitesttaskstart)
 
 
-- [/tasks/stop](#/tasks/stop)
-  - [github.com/mh-cbon/backup/api.TestStopTaskNotStarted](#github.com/mh-cbon/backup/api.TestStopTaskNotStarted)
-  - [github.com/mh-cbon/backup/api.TestStopUnknownTask](#github.com/mh-cbon/backup/api.TestStopUnknownTask)
-  - [github.com/mh-cbon/backup/api.TestTaskStop](#github.com/mh-cbon/backup/api.TestTaskStop)
+- [/tasks/stop](#tasksstop)
+  - [github.com/mh-cbon/backup/api.TestStopTaskNotStarted](#githubcommh-cbonbackupapiteststoptasknotstarted)
+  - [github.com/mh-cbon/backup/api.TestStopUnknownTask](#githubcommh-cbonbackupapiteststopunknowntask)
+  - [github.com/mh-cbon/backup/api.TestTaskStop](#githubcommh-cbonbackupapitesttaskstop)
 
 
 
