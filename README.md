@@ -70,25 +70,25 @@ var router = recorder.NewMuxRouter(mux.NewRouter(), testndoc.Recorder)
 // setup a regular test function
 func TestMyEpApi(t *testing.T) {
 
-  	// Somewhere, setup a regular router.
-  	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-  		w.Write([]byte("response"))
-  	})
+  // Somewhere, setup a regular router.
+  router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+    w.Write([]byte("response"))
+  })
 
-  	// Create a regular request.
-  	req, err := http.NewRequest("GET", "/", nil)
-  	if err != nil {
-  		panic(err)
-  	}
+  // Create a regular request.
+  req, err := http.NewRequest("GET", "/", nil)
+  if err != nil {
+    panic(err)
+  }
 
-  	// Create a regular ResponseRecorder.
-  	rr := httptest.NewRecorder()
+  // Create a regular ResponseRecorder.
+  rr := httptest.NewRecorder()
 
-  	// Execute a regular request on the router.
-  	router.ServeHTTP(rr, req)
+  // Execute a regular request on the router.
+  router.ServeHTTP(rr, req)
 
-    // execute the test assertions
-    // ....
+  // execute the test assertions
+  // ....
 }
 ```
 
