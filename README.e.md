@@ -21,12 +21,17 @@ for initial insipiration.
 
 # Install
 
-#### Go
-{{template "go/install" .}}
+#### Glide
+{{template "glide/install" .}}
 
 # Supported routers
 
 - [gorilla mux](github.com/gorilla/mux)
+
+# Supported export format
+
+- __md__: a one-file github Markdown export with a TOC. [demo](/demo.md)
+- __json__: a one-file JSON export. [demo](/demo.json)
 
 # Test suite integration
 

@@ -1,0 +1,564 @@
+{
+    "EndPoints": {
+        "/config/addTask": {
+            "TestConfigAddTask": {
+                "Request": {
+                    "URL": "/config/addTask",
+                    "Method": "POST",
+                    "URLParams": {},
+                    "Headers": {},
+                    "GetParams": {},
+                    "PostParams": {},
+                    "Body": "{\"Name\":\"Name\",\"Source\":\"Source\",\"Dest\":\"Dest\"}"
+                },
+                "Response": {
+                    "Code": 200,
+                    "Headers": {
+                        "Content-Type": [
+                            "text/plain; charset=utf-8"
+                        ]
+                    },
+                    "Body": "{\n    \"Res\": true,\n    \"Errors\": null,\n    \"Data\": {\n        \"Name\": \"Name\",\n        \"Source\": \"Source\",\n        \"Dest\": \"Dest\"\n    }\n}\n"
+                },
+                "ParameterizedPath": "/config/addTask",
+                "HandlerFn": {
+                    "File": "github.com/mh-cbon/backup/api/_test/_obj_test/config.go",
+                    "Fn": "github.com/mh-cbon/backup/api.(*Config).AddTask-fm"
+                },
+                "TestFn": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/config_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestConfigAddTask"
+                },
+                "TestEP": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/config_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestConfigAddTask",
+                    "Doc": "TestConfigAddTask add a task to the configuration.\n"
+                }
+            },
+            "TestConfigAddTaskAlreadyExisting": {
+                "Request": {
+                    "URL": "/config/addTask",
+                    "Method": "POST",
+                    "URLParams": {},
+                    "Headers": {},
+                    "GetParams": {},
+                    "PostParams": {},
+                    "Body": "{\"Name\":\"Name\",\"Source\":\"Source\",\"Dest\":\"Dest\"}"
+                },
+                "Response": {
+                    "Code": 200,
+                    "Headers": {
+                        "Content-Type": [
+                            "text/plain; charset=utf-8"
+                        ]
+                    },
+                    "Body": "{\n    \"Res\": false,\n    \"Errors\": {\n        \"Name\": \"Task name already exists\"\n    }\n}\n"
+                },
+                "ParameterizedPath": "/config/addTask",
+                "HandlerFn": {
+                    "File": "github.com/mh-cbon/backup/api/_test/_obj_test/config.go",
+                    "Fn": "github.com/mh-cbon/backup/api.(*Config).AddTask-fm"
+                },
+                "TestFn": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/config_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestConfigAddTaskAlreadyExisting"
+                },
+                "TestEP": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/config_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestConfigAddTaskAlreadyExisting",
+                    "Doc": "TestConfigAddTask fail to add a task already existing.\n"
+                }
+            }
+        },
+        "/config/read": {
+            "TestConfigRead": {
+                "Request": {
+                    "URL": "/config/read",
+                    "Method": "GET",
+                    "URLParams": {},
+                    "Headers": {},
+                    "GetParams": {},
+                    "PostParams": {},
+                    "Body": ""
+                },
+                "Response": {
+                    "Code": 200,
+                    "Headers": {
+                        "Content-Type": [
+                            "text/plain; charset=utf-8"
+                        ]
+                    },
+                    "Body": "{\n    \"Tasks\": [\n        {\n            \"Name\": \"Name\",\n            \"Source\": \"Source\",\n            \"Dest\": \"Dest\"\n        }\n    ]\n}\n"
+                },
+                "ParameterizedPath": "/config/read",
+                "HandlerFn": {
+                    "File": "github.com/mh-cbon/backup/api/_test/_obj_test/config.go",
+                    "Fn": "github.com/mh-cbon/backup/api.(*Config).Read-fm"
+                },
+                "TestFn": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/config_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestConfigRead"
+                },
+                "TestEP": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/config_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestConfigRead",
+                    "Doc": "TestConfigRead read the configuration.\n"
+                }
+            }
+        },
+        "/config/rmTask": {
+            "TestConfigRmTask": {
+                "Request": {
+                    "URL": "/config/rmTask",
+                    "Method": "POST",
+                    "URLParams": {},
+                    "Headers": {},
+                    "GetParams": {},
+                    "PostParams": {},
+                    "Body": "{\"Name\":\"Name\",\"Source\":\"Source\",\"Dest\":\"Dest\"}"
+                },
+                "Response": {
+                    "Code": 200,
+                    "Headers": {
+                        "Content-Type": [
+                            "text/plain; charset=utf-8"
+                        ]
+                    },
+                    "Body": "{\n    \"Res\": true,\n    \"Errors\": null\n}\n"
+                },
+                "ParameterizedPath": "/config/rmTask",
+                "HandlerFn": {
+                    "File": "github.com/mh-cbon/backup/api/_test/_obj_test/config.go",
+                    "Fn": "github.com/mh-cbon/backup/api.(*Config).RmTask-fm"
+                },
+                "TestFn": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/config_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestConfigRmTask"
+                },
+                "TestEP": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/config_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestConfigRmTask",
+                    "Doc": "TestConfigRmTask remove a task from the config.\n"
+                }
+            },
+            "TestConfigRmUnknownTask": {
+                "Request": {
+                    "URL": "/config/rmTask",
+                    "Method": "POST",
+                    "URLParams": {},
+                    "Headers": {},
+                    "GetParams": {},
+                    "PostParams": {},
+                    "Body": "{\"Name\":\"Name\",\"Source\":\"Source\",\"Dest\":\"Dest\"}"
+                },
+                "Response": {
+                    "Code": 200,
+                    "Headers": {
+                        "Content-Type": [
+                            "text/plain; charset=utf-8"
+                        ]
+                    },
+                    "Body": "{\n    \"Res\": false,\n    \"Errors\": {\n        \"Name\": \"Task not found\"\n    }\n}\n"
+                },
+                "ParameterizedPath": "/config/rmTask",
+                "HandlerFn": {
+                    "File": "github.com/mh-cbon/backup/api/_test/_obj_test/config.go",
+                    "Fn": "github.com/mh-cbon/backup/api.(*Config).RmTask-fm"
+                },
+                "TestFn": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/config_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestConfigRmUnknownTask"
+                },
+                "TestEP": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/config_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestConfigRmUnknownTask",
+                    "Doc": "TestConfigRmUnknownTask fail to remove unknown task.\n"
+                }
+            }
+        },
+        "/config/tasks": {
+            "TestConfigListTasks": {
+                "Request": {
+                    "URL": "/config/tasks",
+                    "Method": "GET",
+                    "URLParams": {},
+                    "Headers": {},
+                    "GetParams": {},
+                    "PostParams": {},
+                    "Body": ""
+                },
+                "Response": {
+                    "Code": 200,
+                    "Headers": {
+                        "Content-Type": [
+                            "text/plain; charset=utf-8"
+                        ]
+                    },
+                    "Body": "{\n    \"Res\": true,\n    \"Errors\": null,\n    \"Data\": [\n        {\n            \"Name\": \"Name\",\n            \"Source\": \"Source\",\n            \"Dest\": \"Dest\"\n        }\n    ]\n}\n"
+                },
+                "ParameterizedPath": "/config/tasks",
+                "HandlerFn": {
+                    "File": "github.com/mh-cbon/backup/api/_test/_obj_test/config.go",
+                    "Fn": "github.com/mh-cbon/backup/api.(*Config).ListTasks-fm"
+                },
+                "TestFn": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/config_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestConfigListTasks"
+                },
+                "TestEP": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/config_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestConfigListTasks",
+                    "Doc": "TestConfigListTasks read configured tasks.\n"
+                }
+            }
+        },
+        "/disksinfo": {
+            "TestDiskInfo": {
+                "Request": {
+                    "URL": "/disksinfo",
+                    "Method": "GET",
+                    "URLParams": {},
+                    "Headers": {},
+                    "GetParams": {},
+                    "PostParams": {},
+                    "Body": ""
+                },
+                "Response": {
+                    "Code": 200,
+                    "Headers": {
+                        "Content-Type": [
+                            "text/plain; charset=utf-8"
+                        ]
+                    },
+                    "Body": "{\n    \"Res\": true,\n    \"Errors\": null,\n    \"Data\": [\n        {\n            \"Label\": \"fake\",\n            \"IsRemovable\": false,\n            \"Size\": \"\",\n            \"SpaceLeft\": \"\",\n            \"Path\": \"\",\n            \"MountPath\": \"\"\n        }\n    ]\n}\n"
+                },
+                "ParameterizedPath": "/disksinfo",
+                "HandlerFn": {
+                    "File": "github.com/mh-cbon/backup/api/_test/_obj_test/disks.go",
+                    "Fn": "github.com/mh-cbon/backup/api.(*DisksInfo).(github.com/mh-cbon/backup/api.read)-fm"
+                },
+                "TestFn": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/disks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestDiskInfo"
+                },
+                "TestEP": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/disks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestDiskInfo",
+                    "Doc": "TestDiskInfo lists available partitions on the computer.\n"
+                }
+            },
+            "TestDiskInfoFailure": {
+                "Request": {
+                    "URL": "/disksinfo",
+                    "Method": "GET",
+                    "URLParams": {},
+                    "Headers": {},
+                    "GetParams": {},
+                    "PostParams": {},
+                    "Body": ""
+                },
+                "Response": {
+                    "Code": 200,
+                    "Headers": {
+                        "Content-Type": [
+                            "text/plain; charset=utf-8"
+                        ]
+                    },
+                    "Body": "{\n    \"Res\": false,\n    \"Errors\": \"DiskInfo loading failed Disk info was not loaded \"\n}\n"
+                },
+                "ParameterizedPath": "/disksinfo",
+                "HandlerFn": {
+                    "File": "github.com/mh-cbon/backup/api/_test/_obj_test/disks.go",
+                    "Fn": "github.com/mh-cbon/backup/api.(*DisksInfo).(github.com/mh-cbon/backup/api.read)-fm"
+                },
+                "TestFn": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/disks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestDiskInfoFailure"
+                },
+                "TestEP": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/disks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestDiskInfoFailure",
+                    "Doc": "TestDiskInfoFailure fail to read the computer partition list.\n"
+                }
+            }
+        },
+        "/tasks/list": {
+            "TestTaskList": {
+                "Request": {
+                    "URL": "/tasks/list",
+                    "Method": "GET",
+                    "URLParams": {},
+                    "Headers": {},
+                    "GetParams": {},
+                    "PostParams": {},
+                    "Body": ""
+                },
+                "Response": {
+                    "Code": 200,
+                    "Headers": {
+                        "Content-Type": [
+                            "text/plain; charset=utf-8"
+                        ]
+                    },
+                    "Body": "{\n    \"Res\": true,\n    \"Errors\": null,\n    \"Data\": [\n        {\n            \"Name\": \"xxxx\",\n            \"Source\": \"\",\n            \"Dest\": \"\",\n            \"Started\": false,\n            \"StartDate\": \"\",\n            \"EndDate\": \"\",\n            \"Failure\": null,\n            \"Percent\": \"\",\n            \"ETA\": \"\",\n            \"Messages\": null\n        }\n    ]\n}\n"
+                },
+                "ParameterizedPath": "/tasks/list",
+                "HandlerFn": {
+                    "File": "github.com/mh-cbon/backup/api/_test/_obj_test/tasks.go",
+                    "Fn": "github.com/mh-cbon/backup/api.(*ActiveTasks).(github.com/mh-cbon/backup/api.list)-fm"
+                },
+                "TestFn": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/tasks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestTaskList"
+                },
+                "TestEP": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/tasks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestTaskList",
+                    "Doc": "TestTaskList returns a list of active tasks.\n"
+                }
+            }
+        },
+        "/tasks/start": {
+            "TestListRunningTasks": {
+                "Request": {
+                    "URL": "/tasks/start",
+                    "Method": "POST",
+                    "URLParams": {},
+                    "Headers": {},
+                    "GetParams": {},
+                    "PostParams": {},
+                    "Body": "{\"Name\":\"Name\",\"Source\":\"Source\",\"Dest\":\"Dest\"}"
+                },
+                "Response": {
+                    "Code": 200,
+                    "Headers": {
+                        "Content-Type": [
+                            "text/plain; charset=utf-8"
+                        ]
+                    },
+                    "Body": "{\n    \"Res\": true,\n    \"Errors\": null,\n    \"Data\": {\n        \"Name\": \"Name\",\n        \"Source\": \"Source\",\n        \"Dest\": \"Dest\",\n        \"Started\": true,\n        \"StartDate\": \"\",\n        \"EndDate\": \"\",\n        \"Failure\": null,\n        \"Percent\": \"\",\n        \"ETA\": \"\",\n        \"Messages\": null\n    }\n}\n"
+                },
+                "ParameterizedPath": "/tasks/start",
+                "HandlerFn": {
+                    "File": "github.com/mh-cbon/backup/api/_test/_obj_test/tasks.go",
+                    "Fn": "github.com/mh-cbon/backup/api.(*ActiveTasks).(github.com/mh-cbon/backup/api.start)-fm"
+                },
+                "TestFn": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/tasks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestListRunningTasks"
+                },
+                "TestEP": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/tasks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestListRunningTasks",
+                    "Doc": "TestListRunningTasks lists running tasks.\n"
+                }
+            },
+            "TestStartTaskAlreadyStarted": {
+                "Request": {
+                    "URL": "/tasks/start",
+                    "Method": "POST",
+                    "URLParams": {},
+                    "Headers": {},
+                    "GetParams": {},
+                    "PostParams": {},
+                    "Body": "{\"Name\":\"Name\",\"Source\":\"Source\",\"Dest\":\"Dest\"}"
+                },
+                "Response": {
+                    "Code": 200,
+                    "Headers": {
+                        "Content-Type": [
+                            "text/plain; charset=utf-8"
+                        ]
+                    },
+                    "Body": "{\n    \"Res\": false,\n    \"Errors\": \"Task was not started: Task not started \\\"Name\\\"\"\n}\n"
+                },
+                "ParameterizedPath": "/tasks/start",
+                "HandlerFn": {
+                    "File": "github.com/mh-cbon/backup/api/_test/_obj_test/tasks.go",
+                    "Fn": "github.com/mh-cbon/backup/api.(*ActiveTasks).(github.com/mh-cbon/backup/api.start)-fm"
+                },
+                "TestFn": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/tasks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestStartTaskAlreadyStarted"
+                },
+                "TestEP": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/tasks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestStartTaskAlreadyStarted",
+                    "Doc": "TestStartTaskAlreadyStarted fails to start the same task twice.\n"
+                }
+            },
+            "TestStartUnknownTask": {
+                "Request": {
+                    "URL": "/tasks/start",
+                    "Method": "POST",
+                    "URLParams": {},
+                    "Headers": {},
+                    "GetParams": {},
+                    "PostParams": {},
+                    "Body": "{\"Name\":\"nop nop\",\"Source\":\"\",\"Dest\":\"\"}"
+                },
+                "Response": {
+                    "Code": 200,
+                    "Headers": {
+                        "Content-Type": [
+                            "text/plain; charset=utf-8"
+                        ]
+                    },
+                    "Body": "{\n    \"Res\": false,\n    \"Errors\": {\n        \"Name\": \"Task not found\"\n    }\n}\n"
+                },
+                "ParameterizedPath": "/tasks/start",
+                "HandlerFn": {
+                    "File": "github.com/mh-cbon/backup/api/_test/_obj_test/tasks.go",
+                    "Fn": "github.com/mh-cbon/backup/api.(*ActiveTasks).(github.com/mh-cbon/backup/api.start)-fm"
+                },
+                "TestFn": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/tasks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestStartUnknownTask"
+                },
+                "TestEP": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/tasks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestStartUnknownTask",
+                    "Doc": "TestStartUnknownTask fails to start an unknown task.\n"
+                }
+            },
+            "TestTaskStart": {
+                "Request": {
+                    "URL": "/tasks/start",
+                    "Method": "POST",
+                    "URLParams": {},
+                    "Headers": {},
+                    "GetParams": {},
+                    "PostParams": {},
+                    "Body": "{\"Name\":\"Name\",\"Source\":\"Source\",\"Dest\":\"Dest\"}"
+                },
+                "Response": {
+                    "Code": 200,
+                    "Headers": {
+                        "Content-Type": [
+                            "text/plain; charset=utf-8"
+                        ]
+                    },
+                    "Body": "{\n    \"Res\": true,\n    \"Errors\": null,\n    \"Data\": {\n        \"Name\": \"Name\",\n        \"Source\": \"Source\",\n        \"Dest\": \"Dest\",\n        \"Started\": true,\n        \"StartDate\": \"\",\n        \"EndDate\": \"\",\n        \"Failure\": null,\n        \"Percent\": \"\",\n        \"ETA\": \"\",\n        \"Messages\": null\n    }\n}\n"
+                },
+                "ParameterizedPath": "/tasks/start",
+                "HandlerFn": {
+                    "File": "github.com/mh-cbon/backup/api/_test/_obj_test/tasks.go",
+                    "Fn": "github.com/mh-cbon/backup/api.(*ActiveTasks).(github.com/mh-cbon/backup/api.start)-fm"
+                },
+                "TestFn": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/tasks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestTaskStart"
+                },
+                "TestEP": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/tasks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestTaskStart",
+                    "Doc": "TestTaskStart starts a task.\n"
+                }
+            }
+        },
+        "/tasks/stop": {
+            "TestStopTaskNotStarted": {
+                "Request": {
+                    "URL": "/tasks/stop",
+                    "Method": "POST",
+                    "URLParams": {},
+                    "Headers": {},
+                    "GetParams": {},
+                    "PostParams": {},
+                    "Body": "{\"Name\":\"Name\",\"Source\":\"Source\",\"Dest\":\"Dest\"}"
+                },
+                "Response": {
+                    "Code": 200,
+                    "Headers": {
+                        "Content-Type": [
+                            "text/plain; charset=utf-8"
+                        ]
+                    },
+                    "Body": "{\n    \"Res\": false,\n    \"Errors\": \"Task was not found: Task not stopped \\\"Name\\\"\"\n}\n"
+                },
+                "ParameterizedPath": "/tasks/stop",
+                "HandlerFn": {
+                    "File": "github.com/mh-cbon/backup/api/_test/_obj_test/tasks.go",
+                    "Fn": "github.com/mh-cbon/backup/api.(*ActiveTasks).(github.com/mh-cbon/backup/api.stop)-fm"
+                },
+                "TestFn": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/tasks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestStopTaskNotStarted"
+                },
+                "TestEP": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/tasks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestStopTaskNotStarted",
+                    "Doc": "TestStopTaskNotStarted fails to stop a task not yet started.\n"
+                }
+            },
+            "TestStopUnknownTask": {
+                "Request": {
+                    "URL": "/tasks/stop",
+                    "Method": "POST",
+                    "URLParams": {},
+                    "Headers": {},
+                    "GetParams": {},
+                    "PostParams": {},
+                    "Body": "{\"Name\":\"Name\",\"Source\":\"Source\",\"Dest\":\"Dest\"}"
+                },
+                "Response": {
+                    "Code": 200,
+                    "Headers": {
+                        "Content-Type": [
+                            "text/plain; charset=utf-8"
+                        ]
+                    },
+                    "Body": "{\n    \"Res\": false,\n    \"Errors\": \"Task was not found: Task not stopped \\\"Name\\\"\"\n}\n"
+                },
+                "ParameterizedPath": "/tasks/stop",
+                "HandlerFn": {
+                    "File": "github.com/mh-cbon/backup/api/_test/_obj_test/tasks.go",
+                    "Fn": "github.com/mh-cbon/backup/api.(*ActiveTasks).(github.com/mh-cbon/backup/api.stop)-fm"
+                },
+                "TestFn": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/tasks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestStopUnknownTask"
+                },
+                "TestEP": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/tasks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestStopUnknownTask",
+                    "Doc": "TestStopUnknownTask fails to stop unknown task.\n"
+                }
+            },
+            "TestTaskStop": {
+                "Request": {
+                    "URL": "/tasks/stop",
+                    "Method": "POST",
+                    "URLParams": {},
+                    "Headers": {},
+                    "GetParams": {},
+                    "PostParams": {},
+                    "Body": "{\"Name\":\"Name\",\"Source\":\"Source\",\"Dest\":\"Dest\"}"
+                },
+                "Response": {
+                    "Code": 200,
+                    "Headers": {
+                        "Content-Type": [
+                            "text/plain; charset=utf-8"
+                        ]
+                    },
+                    "Body": "{\n    \"Res\": true,\n    \"Errors\": null,\n    \"Data\": {\n        \"Name\": \"Name\",\n        \"Source\": \"Source\",\n        \"Dest\": \"Dest\",\n        \"Started\": false,\n        \"StartDate\": \"\",\n        \"EndDate\": \"\",\n        \"Failure\": null,\n        \"Percent\": \"\",\n        \"ETA\": \"\",\n        \"Messages\": null\n    }\n}\n"
+                },
+                "ParameterizedPath": "/tasks/stop",
+                "HandlerFn": {
+                    "File": "github.com/mh-cbon/backup/api/_test/_obj_test/tasks.go",
+                    "Fn": "github.com/mh-cbon/backup/api.(*ActiveTasks).(github.com/mh-cbon/backup/api.stop)-fm"
+                },
+                "TestFn": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/tasks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestTaskStop"
+                },
+                "TestEP": {
+                    "File": "/home/mh-cbon/gow/src/github.com/mh-cbon/backup/api/tasks_test.go",
+                    "Fn": "github.com/mh-cbon/backup/api.TestTaskStop",
+                    "Doc": "TestTaskStop stop a task.\n"
+                }
+            }
+        }
+    }
+}

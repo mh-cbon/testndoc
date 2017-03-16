@@ -26,16 +26,25 @@ for initial insipiration.
 
 # Install
 
-#### Go
+#### Glide
 
 ```sh
-go get github.com/mh-cbon/testndoc
+mkdir -p $GOPATH/src/github.com/mh-cbon/testndoc
+cd $GOPATH/src/github.com/mh-cbon/testndoc
+git clone https://github.com/mh-cbon/testndoc.git .
+glide install
+go install
 ```
 
 
 # Supported routers
 
 - [gorilla mux](github.com/gorilla/mux)
+
+# Supported export format
+
+- __md__: a one-file github Markdown export with a TOC. [demo](/demo.md)
+- __json__: a one-file JSON export. [demo](/demo.json)
 
 # Test suite integration
 
