@@ -46,12 +46,25 @@ to export the documentation once the tests finished.
 
 ```go
 func TestMain(m *testing.M) {
-  exitCode := m.Run()                            // run the tests
-  err := md.Export(testndoc.Recorder, "path/")   // export the documentation
-  if err != nil {
-    panic(err)
-  }
-  os.Exit(exitCode)
+  exitCode := m.Run() // run the tests
+	// if err := testndoc.Recorder.Save("../temp.json"); err != nil {
+	// 	panic(err)
+	// }
+	apidoc, err2 := testndoc.Recorder.LoadMetadata()       // Load more metadata**
+	if err2 != nil {
+		panic(err2)
+	}
+	// export the documentation
+	if err := md.Export(apidoc, "../api.md"); err != nil {
+		panic(err)
+	}
+	// os.Remove("../temp.json")
+	os.Exit(exitCode)
+  //** Loading metadata require to parse your program,
+  // which can be slow to run on every test execution.
+  // Thus you might simply save the recorder to a temporary file,
+  // Later, load it back, load metadata, export the doc.
+  // That way of working is well suited for release based software delivery.
 }
 ```
 
